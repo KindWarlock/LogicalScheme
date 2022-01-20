@@ -13,11 +13,11 @@ LogicalScheme::LogicalScheme() {
 
 LogicalScheme::~LogicalScheme()
 {
-	// удаляем все выделенные указатели на элементы
+	// ГіГ¤Г Г«ГїГҐГ¬ ГўГ±ГҐ ГўГ»Г¤ГҐГ«ГҐГ­Г­Г»ГҐ ГіГЄГ Г§Г ГІГҐГ«ГЁ Г­Г  ГЅГ«ГҐГ¬ГҐГ­ГІГ»
 	for (int i = 0; i < id_cnt; i++) {
 		delete elems[i];
 	}
-	delete elems;
+	delete[] elems;
 }
 
 bool LogicalScheme::append(std::string elem_type, int* new_ins_id, int new_ins_num) {
