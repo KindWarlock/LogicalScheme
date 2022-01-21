@@ -81,6 +81,7 @@ int main()
             scheme.append(name, &in_ids[0], in_cnt, &out_ids[0], out_cnt - 1);
         }
     }
+    scheme.remove(5);
     while (1) {
         std::cout << "Enter input values (to stop enter any non-number symbol): ";
         valuesFromConsole(&values[0], cnt);

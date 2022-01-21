@@ -24,7 +24,7 @@ void LogicalElement::changeInsForward(int new_id)
 void LogicalElement::changeInsBackward(int new_id)
 {
 	for (int i = 0; i < ins_num; i++) {
-		if (ins_id[i] > new_id) {
+		if (ins_id[i] >= new_id) {
 			ins_id[i]--;
 		}
 	}

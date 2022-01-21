@@ -32,28 +32,28 @@ bool LogicalScheme::append(std::string elem_type, int* new_ins_id, int new_ins_n
 		{
 			LogicalElement* elem = new OrElement(id_cnt, new_ins_id, new_ins_num);
 			elems[id_cnt++] = elem;
-			std::cout << elem_type << " id: " << id_cnt - 1 << std::endl;
+			std::cout << "* " << elem_type << " id: " << id_cnt - 1 << std::endl;
 		}
 		break;
 		case 2:
 		{
 			LogicalElement* elem = new XorElement(id_cnt, new_ins_id, new_ins_num);
 			elems[id_cnt++] = elem;
-			std::cout << elem_type << " id: " << id_cnt - 1 << std::endl;
+			std::cout << "* " << elem_type << " id: " << id_cnt - 1 << std::endl;
 		}
 		break;
 		case 3:
 		{
 			LogicalElement* elem = new AndElement(id_cnt, new_ins_id, new_ins_num);
 			elems[id_cnt++] = elem;
-			std::cout << elem_type << " id: " << id_cnt - 1 << std::endl;
+			std::cout << "* " << elem_type << " id: " << id_cnt - 1 << std::endl;
 		}
 		break;
 		case 4:
 		{
 			LogicalElement* elem = new NotElement(id_cnt, new_ins_id[0]);
 			elems[id_cnt++] = elem;
-			std::cout << elem_type << " id: " << id_cnt - 1 << std::endl;
+			std::cout << "* " << elem_type << " id: " << id_cnt - 1 << std::endl;
 		}
 		break;
 		default:
@@ -148,8 +148,8 @@ bool LogicalScheme::remove(int id)
 		std::cout << "Can't remove input element.\n";
 		return false;
 	}
-	if (elems[id]->getInsNum() == 1) {
-		std::cout << "Can't remove not element.\n";
+	if (elems[id]->getInsNum() > 1 && id != id_cnt) {
+		std::cout << "Can't delete element with 2 entrances.\n";
 		return false;
 	}
 	if (id > id_cnt) {
@@ -240,7 +240,7 @@ void LogicalScheme::moveIdsForward(int id_new) {
 }
 void LogicalScheme::moveIdsBackward(int id_new)
 {
-	for (int i = id_cnt - 1; i >= id_new; i--) {
+	for (int i = id_cnt - 2; i >= id_new; i--) {
 		elems[i] = elems[i + 1];
 		elems[i]->setId(i);
 		elems[i]->changeInsBackward(i);
