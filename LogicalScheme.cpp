@@ -198,7 +198,7 @@ void LogicalScheme::extendArray() {
 }
 int LogicalScheme::checkIds(int* ids, int ids_num) {
 	for (int i = 0; i < ids_num; i++) {
-		if (ids[i] >= id_cnt || ids[i] < 0) {
+		if (ids[i] >= id_cnt || ids[i] < 3) {
 			return ids[i];
 		}
 	}
@@ -207,6 +207,10 @@ int LogicalScheme::checkIds(int* ids, int ids_num) {
 int LogicalScheme::checkIds(int* ids_in, int ids_in_num, int* ids_out, int ids_out_num)
 {
 	int id_none = checkIds(ids_in, ids_in_num);
+	if (id_none != -1) {
+		std::cout << "No id " << id_none << std::endl;
+		return -1;
+	}
 	id_none = checkIds(ids_out, ids_out_num);
 	if (id_none != -1) {
 		std::cout << "No id " << id_none << std::endl;
