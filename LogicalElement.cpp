@@ -1,4 +1,4 @@
-#include "LogicalElement.h"
+ï»¿#include "LogicalElement.h"
 
 void LogicalElement::getInsValues(LogicalElement** scheme) {
 	for (int i = 0; i < ins_num; i++) {
@@ -7,16 +7,53 @@ void LogicalElement::getInsValues(LogicalElement** scheme) {
 	}
 }
 
+void LogicalElement::setId(int new_id)
+{
+	id = new_id;
+}
+
+void LogicalElement::changeInsForward(int new_id)
+{
+	for (int i = 0; i < ins_num; i++) {
+		if (ins_id[i] > new_id) {
+			ins_id[i]++;
+		}
+	}
+}
+
+void LogicalElement::changeInsBackward(int new_id)
+{
+	for (int i = 0; i < ins_num; i++) {
+		if (ins_id[i] > new_id) {
+			ins_id[i]--;
+		}
+	}
+}
+
+void LogicalElement::appendIn(int new_id)
+{
+	if (ins_num == 3) {
+		throw ManyInsException();
+		return;
+	}
+	ins_id[ins_num++] = new_id;
+}
+
 bool LogicalElement::getValue() {
 	return out_val;
 }
 
 bool LogicalElement::checkIns(int vals_num) {
 	for (int i = 0; i < ins_num; i++) {
-		// åñëè ññûëàåòñÿ íà íà÷àëüíûé ýëåìåíò, íî â íåì íåò ââåäåííûõ äàííûõ
+		// Ã¥Ã±Ã«Ã¨ Ã±Ã±Ã»Ã«Ã Ã¥Ã²Ã±Ã¿ Ã­Ã  Ã­Ã Ã·Ã Ã«Ã¼Ã­Ã»Ã© Ã½Ã«Ã¥Ã¬Ã¥Ã­Ã², Ã­Ã® Ã¢ Ã­Ã¥Ã¬ Ã­Ã¥Ã² Ã¢Ã¢Ã¥Ã¤Ã¥Ã­Ã­Ã»Ãµ Ã¤Ã Ã­Ã­Ã»Ãµ
 		if (ins_id[i] < 3 && ins_id[i] > vals_num) {
 			return false;
 		}
 	}
 	return true;
+}
+
+int LogicalElement::getInsNum()
+{
+	return ins_num;
 }

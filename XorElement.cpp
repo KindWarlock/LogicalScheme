@@ -1,7 +1,7 @@
-#include "LogicalElement.h"
+ï»¿#include "LogicalElement.h"
 
 XorElement::XorElement(int new_id, int* new_ins_id, int new_ins_num) {
-	//ñóùåñòâîâàíèå id áóäåò ïðîâåðÿòüñÿ â ìåòîäå ñõåìû
+	//Ã±Ã³Ã¹Ã¥Ã±Ã²Ã¢Ã®Ã¢Ã Ã­Ã¨Ã¥ id Ã¡Ã³Ã¤Ã¥Ã² Ã¯Ã°Ã®Ã¢Ã¥Ã°Ã¿Ã²Ã¼Ã±Ã¿ Ã¢ Ã¬Ã¥Ã²Ã®Ã¤Ã¥ Ã±ÃµÃ¥Ã¬Ã»
 	if (new_ins_num > 3) {
 		throw ManyInsException();
 	}
@@ -15,7 +15,7 @@ XorElement::XorElement(int new_id, int* new_ins_id, int new_ins_num) {
 void XorElement::calcValue(LogicalElement** scheme) {
 	getInsValues(scheme);
 	out_val = ins_val[0] ^ ins_val[1];
-	for (int i = 2; i < ins_num; i++) { // äëÿ óíèâåðñàëüíîñòè, ïðè ðàñøèðåíèè âîçìîæíîñòåé ïðîãðàììû
+	for (int i = 2; i < ins_num; i++) { // Ã¤Ã«Ã¿ Ã³Ã­Ã¨Ã¢Ã¥Ã°Ã±Ã Ã«Ã¼Ã­Ã®Ã±Ã²Ã¨, Ã¯Ã°Ã¨ Ã°Ã Ã±Ã¸Ã¨Ã°Ã¥Ã­Ã¨Ã¨ Ã¢Ã®Ã§Ã¬Ã®Ã¦Ã­Ã®Ã±Ã²Ã¥Ã© Ã¯Ã°Ã®Ã£Ã°Ã Ã¬Ã¬Ã»
 		out_val ^= ins_val[i + 1];
 	}
 }

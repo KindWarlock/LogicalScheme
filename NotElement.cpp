@@ -1,7 +1,7 @@
-#include "LogicalElement.h"
+ï»¿#include "LogicalElement.h"
 
 NotElement::NotElement(int new_id, int new_in_id) {
-	//ñóùåñòâîâàíèå id áóäåò ïðîâåðÿòüñÿ â ìåòîäå ñõåìû
+	//Ã±Ã³Ã¹Ã¥Ã±Ã²Ã¢Ã®Ã¢Ã Ã­Ã¨Ã¥ id Ã¡Ã³Ã¤Ã¥Ã² Ã¯Ã°Ã®Ã¢Ã¥Ã°Ã¿Ã²Ã¼Ã±Ã¿ Ã¢ Ã¬Ã¥Ã²Ã®Ã¤Ã¥ Ã±ÃµÃ¥Ã¬Ã»
 	id = new_id;
 	ins_num = 1;
 	ins_id[0] = new_in_id;
@@ -10,6 +10,22 @@ NotElement::NotElement(int new_id, int new_in_id) {
 void NotElement::calcValue(LogicalElement** scheme) {
 	getInsValues(scheme);
 	out_val = !ins_val[0];
+}
+void NotElement::changeInsForward(int new_id)
+{
+	if (ins_id[0] > new_id) {
+		ins_id[0]++;
+	}
+}
+void NotElement::changeInsBackward(int new_id)
+{
+	if (ins_id[0] > new_id) {
+		ins_id[0]--;
+	}
+}
+void NotElement::appendIn(int new_id)
+{
+	ins_id[0] = new_id;
 }
 void NotElement::getInsValues(LogicalElement** scheme) {
 	int in_id = ins_id[0];

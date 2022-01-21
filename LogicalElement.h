@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include <iostream>
 #include <exception>
 
@@ -22,7 +22,14 @@ protected:
 public:
 	virtual void calcValue(LogicalElement** scheme) = 0;
 	virtual bool getValue();
-	virtual bool checkIns(int vals_num); // для кол-ва начальных значений
+	virtual bool checkIns(int vals_num); // Г¤Г«Гї ГЄГ®Г«-ГўГ  Г­Г Г·Г Г«ГјГ­Г»Гµ Г§Г­Г Г·ГҐГ­ГЁГ©
+	virtual int getInsNum();
+
+	virtual void changeInsForward(int new_id);
+	virtual void changeInsBackward(int new_id);
+	virtual void appendIn(int new_id);
+	virtual void setId(int new_id);
+	
 };
 
 class OrElement : public LogicalElement {
@@ -49,6 +56,9 @@ protected:
 public:
 	NotElement(int new_id, int ins_id);
 	virtual void calcValue(LogicalElement** scheme);
+	virtual void changeInsForward(int new_id);
+	virtual void changeInsBackward(int new_id);
+	virtual void appendIn(int new_id);
 };
 
 class InElement : public LogicalElement {
@@ -57,4 +67,4 @@ protected:
 public:
 	InElement(int new_id, bool val);
 	virtual void calcValue(LogicalElement** scheme);
-};
+}; 
